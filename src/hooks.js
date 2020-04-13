@@ -1,12 +1,10 @@
-import {useState} from './hooks'
+import {useState} from 'react'
 
-export const useAnimatedScale = (n, scGap, delay) => {
+export const useAnimatedScale = (scGap, delay) => {
     const [scale, setScale] = useState(0)
     const [animated, setAnimated] = useState(false)
-    const [i, setI] = useState(0)
     return {
         scale,
-        i,
         start() {
             if (!animated) {
                 var currScale = scale

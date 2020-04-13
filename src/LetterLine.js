@@ -1,7 +1,7 @@
 import React from 'react'
 import {divideScale, sinify} from './utils'
 
-const hFactor = 5
+const hFactor = 3
 const color = '#3F51B5'
 const strokeWidth = 90
 const tw = 0.6
@@ -24,20 +24,21 @@ const letterStyle = (w, h, gap, i, scale) => {
 
 const lineStyle = (w, h, gap, i, scale) => {
     const {position, x, y} = commonStyle(w, h, gap, i, scale)
-    const width = `${Math.min(w, h) / strokeWidth}`
-    const height = `${y}px`
+    const width = `${Math.min(w, h) / strokeWidth}px`
+    const height = `${y  + gap * 0.2 * scale}px`
     const top = `0px`
-    const left = `${x + gap * (tw / 2)}px`
+    const left = `${x + gap * (0.2)}px`
     const background = color
     return {position, top, left, width, height, background}
 }
 
-const LetterLine = ({w, h, scale, i, n, words) => {
+const LetterLine = ({w, h, scale, i, word}) => {
+    const n = word.length
     const sf = divideScale(sinify(scale), i, n)
     const gap = (w * widthFactor) / n
     return (<div>
-              <div style = {lineStyle(w, h, gap, i, scale)}/>
-              <div style = {letterStyle(w, h, gap, i, scale)}>{words.charAt(i)}</div>
+              <div style = {lineStyle(w, h, gap, i, sf)}/>
+              <div style = {letterStyle(w, h, gap, i, sf)}>{word.charAt(i)}</div>
           </div>)
 }
 
